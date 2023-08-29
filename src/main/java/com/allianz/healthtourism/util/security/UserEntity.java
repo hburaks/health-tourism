@@ -1,5 +1,6 @@
 package com.allianz.healthtourism.util.security;
 
+import com.allianz.healthtourism.database.entity.PatientEntity;
 import com.allianz.healthtourism.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,8 +14,8 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private ProfileEntity profile;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private PatientEntity patient;
 
     @Column
     private String username;

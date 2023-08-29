@@ -2,7 +2,6 @@ package com.allianz.healthtourism.util.security;
 
 import com.allianz.healthtourism.util.BaseMapper;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

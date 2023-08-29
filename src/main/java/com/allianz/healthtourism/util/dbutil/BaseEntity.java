@@ -35,6 +35,7 @@ public class BaseEntity {
 
     @CreatedBy
     private String createdBy;
+
     @PrePersist
     protected void prePersist() {
         this.uuid = UUID.randomUUID();
@@ -44,7 +45,7 @@ public class BaseEntity {
 
         if (authentication != null && authentication.isAuthenticated()) {
             creator = authentication.getPrincipal().toString();
-            }
+        }
         setCreatedBy(creator);
 
     }

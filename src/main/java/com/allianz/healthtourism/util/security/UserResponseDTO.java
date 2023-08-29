@@ -15,7 +15,7 @@ public class UserResponseDTO extends BaseResponseDTO {
     private String password;
     private String photoLink;
     private boolean isEnable;
-//    private ProfileEntity profile;
+    //    private ProfileEntity profile;
     private Set<RoleResponseDTO> roles = new HashSet<>();
 //    private AppResponseDTO app;
 }

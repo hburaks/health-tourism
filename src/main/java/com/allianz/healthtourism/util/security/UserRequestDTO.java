@@ -11,6 +11,6 @@ public class UserRequestDTO extends BaseRequestDTO {
     private String password;
     private String email;
     private String photoLink;
-//    private ProfileRequestDTO profileRequestDTO;
+    //    private ProfileRequestDTO profileRequestDTO;
     private Long appId;
 }

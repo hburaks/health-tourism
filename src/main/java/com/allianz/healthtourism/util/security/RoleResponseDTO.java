@@ -4,6 +4,7 @@ import com.allianz.healthtourism.util.BaseResponseDTO;
 import lombok.Data;
 
 import java.util.List;
+
 @Data
 public class RoleResponseDTO extends BaseResponseDTO {
     private String name;

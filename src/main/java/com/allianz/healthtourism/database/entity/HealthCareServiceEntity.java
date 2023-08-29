@@ -11,6 +11,6 @@ import java.math.BigDecimal;
 @Entity
 @Data
 public class HealthCareServiceEntity extends BaseEntity {
-   private String name;
-   private BigDecimal price;
+    private String name;
+    private BigDecimal price;
 }

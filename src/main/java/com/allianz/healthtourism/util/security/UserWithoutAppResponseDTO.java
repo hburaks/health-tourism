@@ -15,6 +15,6 @@ public class UserWithoutAppResponseDTO extends BaseResponseDTO {
     private String password;
     private String photoLink;
     private boolean isEnable;
-//    private ProfileResponseDTO profile;
+    //    private ProfileResponseDTO profile;
     private Set<RoleWithoutUsersResponseDTO> roles = new HashSet<>();
 }

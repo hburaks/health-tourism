@@ -23,8 +23,8 @@ public abstract class BaseService<
 
 
     protected abstract Repository getRepository();
-    protected abstract Specification getSpecification();
 
+    protected abstract Specification getSpecification();
 
 
     public PageResponseDTO<ResponseDTO> getAll(BaseFilterRequestDTO baseFilterRequestDTO) {

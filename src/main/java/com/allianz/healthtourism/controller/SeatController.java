@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hotel")
+@RequestMapping("seat")
 @RequiredArgsConstructor
 public class SeatController extends BaseController<SeatRequestDTO, SeatResponseDTO, SeatEntity, SeatMapper, SeatRepository, SeatSpecification, SeatService> {
     private final SeatService service;

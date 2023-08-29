@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hotel")
+@RequestMapping("room")
 @RequiredArgsConstructor
 public class RoomController extends BaseController<RoomRequestDTO, RoomResponseDTO, RoomEntity, RoomMapper, RoomRepository, RoomSpecification, RoomService> {
     private final RoomService service;

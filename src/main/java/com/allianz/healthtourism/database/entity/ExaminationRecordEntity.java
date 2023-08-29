@@ -11,4 +11,7 @@ public class ExaminationRecordEntity extends BaseEntity {
     private String notes;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private AppointmentEntity appointment;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor")
+    private DoctorEntity doctor;
 }

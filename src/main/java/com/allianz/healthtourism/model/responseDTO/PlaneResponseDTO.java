@@ -1,12 +1,13 @@
 package com.allianz.healthtourism.model.responseDTO;
 
 import com.allianz.healthtourism.util.BaseRequestDTO;
+import com.allianz.healthtourism.util.BaseResponseDTO;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class PlaneResponseDTO extends BaseRequestDTO {
+public class PlaneResponseDTO extends BaseResponseDTO {
     private String name;
     private List<SeatResponseDTO> seats;
     private CityResponseDTO city;

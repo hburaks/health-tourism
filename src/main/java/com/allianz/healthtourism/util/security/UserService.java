@@ -1,5 +1,8 @@
 package com.allianz.healthtourism.util.security;
 
+import com.allianz.healthtourism.database.entity.DoctorEntity;
+import com.allianz.healthtourism.service.DoctorService;
+import com.allianz.healthtourism.service.PatientService;
 import com.allianz.healthtourism.util.BaseService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +20,6 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
     private final RoleEntityRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserSpecification userSpecification;
-
 
     @Override
     protected UserMapper getMapper() {
@@ -71,7 +73,6 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
             }
             roles.add(roleEntity);
             user.setRoles(roles);
-//            user.setProfile(new ProfileEntity());
             userRepository.save(user);
             return true;
         }
@@ -83,4 +84,23 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
     }
 
 
+    public UserEntity saveUserByDoctorRole(UserEntity user) {
+        if (!isEmailExist(user.getEmail())) {
+            user.setEnable(false);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            Set<RoleEntity> roles = new HashSet<>();
+            RoleEntity roleEntity = roleRepository.findByName("doctor").orElse(null);
+            if (roleEntity == null) {
+                roleEntity = new RoleEntity();
+                roleEntity.setName("doctor");
+                roleEntity = roleRepository.save(roleEntity);
+            }
+//            user.setProfile(new ProfileEntity());
+            roles.add(roleEntity);
+            user.setRoles(roles);
+            UserEntity userEntity = userRepository.save(user);
+            return userEntity;
+        }
+        return null;
+    }
 }

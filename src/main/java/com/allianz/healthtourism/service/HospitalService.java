@@ -16,12 +16,16 @@ import com.allianz.healthtourism.util.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
 public class HospitalService extends BaseService<HospitalResponseDTO, HospitalRequestDTO, HospitalEntity, HospitalMapper, HospitalRepository, HospitalSpecification> {
     private final HospitalRepository repository;
     private final HospitalSpecification specification;
+    private final HealthCareServiceService healthCareServiceService;
     @Override
     protected HospitalMapper getMapper() {
         return HospitalMapper.INSTANCE;
@@ -33,5 +37,16 @@ public class HospitalService extends BaseService<HospitalResponseDTO, HospitalRe
     @Override
     protected HospitalSpecification getSpecification() {
         return specification;
+    }
+
+    public HospitalResponseDTO addHealthCareServiceToHospital( UUID healthCareServiceUuid,UUID hospitalUuid) {
+        HospitalEntity hospital = getRepository().findByUuid(hospitalUuid).orElse(null);
+        HealthCareServiceEntity healthCareService = healthCareServiceService.getEntityByUuid(healthCareServiceUuid);
+        if (hospital.getHealthCareServices() == null) {
+            hospital.setHealthCareServices(new ArrayList<>());
+        }
+        hospital.getHealthCareServices().add(healthCareService);
+        hospital = repository.save(hospital);
+        return getMapper().entityToResponseDto(hospital);
     }
 }

@@ -10,8 +10,6 @@ import java.util.List;
 public class HotelRequestDTO extends BaseRequestDTO {
     private String name;
     private BigDecimal price;
-    private CityRequestDTO city;
-    private List<PatientRequestDTO> patients;
-    private List<BookingRequestDTO> bookings;
-    private List<RoomRequestDTO> rooms;
+    private Long cityId;
+    private int roomCount;
 }

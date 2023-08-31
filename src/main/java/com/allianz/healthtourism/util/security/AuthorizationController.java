@@ -1,5 +1,6 @@
 package com.allianz.healthtourism.util.security;
 
+import com.allianz.healthtourism.model.requestDTO.DoctorRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,8 @@ public class AuthorizationController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
     @PostMapping("admin/register")
     public ResponseEntity<Boolean> saveAdmin(@RequestBody UserRequestDTO body) {

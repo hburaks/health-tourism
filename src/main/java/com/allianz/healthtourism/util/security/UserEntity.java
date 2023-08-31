@@ -14,9 +14,6 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private PatientEntity patient;
-
     @Column
     private String username;
     @Column

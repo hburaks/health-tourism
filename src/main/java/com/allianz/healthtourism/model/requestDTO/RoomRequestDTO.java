@@ -9,6 +9,5 @@ import java.util.List;
 @Data
 public class RoomRequestDTO extends BaseRequestDTO {
     private int roomNo;
-    private int bedCount;
     private List<PatientRequestDTO> patients;
 }

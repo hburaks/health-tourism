@@ -13,8 +13,13 @@ import com.allianz.healthtourism.model.requestDTO.DoctorRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.CityResponseDTO;
 import com.allianz.healthtourism.model.responseDTO.DoctorResponseDTO;
 import com.allianz.healthtourism.util.BaseService;
+import com.allianz.healthtourism.util.security.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Service
@@ -22,6 +27,7 @@ import org.springframework.stereotype.Service;
 public class DoctorService extends BaseService<DoctorResponseDTO, DoctorRequestDTO, DoctorEntity, DoctorMapper, DoctorRepository, DoctorSpecification> {
     private final DoctorRepository repository;
     private final DoctorSpecification specification;
+    private final UserService userService;
     @Override
     protected DoctorMapper getMapper() {
         return DoctorMapper.INSTANCE;
@@ -33,5 +39,16 @@ public class DoctorService extends BaseService<DoctorResponseDTO, DoctorRequestD
     @Override
     protected DoctorSpecification getSpecification() {
         return specification;
+    }
+
+    public DoctorResponseDTO saveUserByRole(DoctorRequestDTO body) {
+        DoctorEntity doctorEntity = getMapper().requestDtoToEntity(body);
+        UserEntity userEntity = doctorEntity.getUser();
+        UserEntity savedUser = userService.saveUserByDoctorRole(userEntity);
+        if(savedUser == null){
+            return null;
+        }
+        DoctorEntity savedDoctor = getRepository().save(doctorEntity);
+        return getMapper().entityToResponseDto(savedDoctor);
     }
 }

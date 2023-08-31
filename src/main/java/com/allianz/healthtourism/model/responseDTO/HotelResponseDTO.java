@@ -1,5 +1,7 @@
 package com.allianz.healthtourism.model.responseDTO;
 
+import com.allianz.healthtourism.model.responseDTO.plainResponseDTO.BookingPlainResponseDTO;
+import com.allianz.healthtourism.model.responseDTO.plainResponseDTO.PatientPlainResponseDTO;
 import com.allianz.healthtourism.util.BaseRequestDTO;
 import com.allianz.healthtourism.util.BaseResponseDTO;
 import lombok.Data;
@@ -12,7 +14,7 @@ public class HotelResponseDTO extends BaseResponseDTO {
     private String name;
     private BigDecimal price;
     private CityResponseDTO city;
-    private List<PatientResponseDTO> patients;
-    private List<BookingResponseDTO> bookings;
+    private List<PatientPlainResponseDTO> patients;
+    private List<BookingPlainResponseDTO> bookings;
     private List<RoomResponseDTO> rooms;
 }

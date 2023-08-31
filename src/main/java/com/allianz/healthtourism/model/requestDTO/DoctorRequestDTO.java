@@ -2,15 +2,14 @@ package com.allianz.healthtourism.model.requestDTO;
 
 import com.allianz.healthtourism.util.BaseRequestDTO;
 import com.allianz.healthtourism.util.security.UserEntity;
+import com.allianz.healthtourism.util.security.UserRequestDTO;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class DoctorRequestDTO extends BaseRequestDTO {
-    private HospitalRequestDTO hospital;
-    private HealthCareServiceRequestDTO healthCareService;
-    private List<ExaminationRecordRequestDTO> examinationRecords;
-    private UserEntity user;
-    private List<AppointmentRequestDTO> appointments;
+    private Long hospitalId;
+    private Long healthCareServiceId;
+    private UserRequestDTO user;
 }

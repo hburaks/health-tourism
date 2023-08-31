@@ -8,9 +8,5 @@ import java.util.List;
 @Data
 public class HospitalRequestDTO extends BaseRequestDTO {
     private String name;
-    private CityRequestDTO city;
-    private List<ExaminationRecordRequestDTO> examinationRecords;
-    private List<PatientRequestDTO> patients;
-    private List<DoctorRequestDTO> doctors;
-    private List<HealthCareServiceRequestDTO> healthCareServices;
+    private Long cityId;
 }

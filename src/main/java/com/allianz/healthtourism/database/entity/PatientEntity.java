@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Data
 public class PatientEntity extends BaseEntity {
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserEntity user;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<ExaminationRecordEntity> examinationRecords;

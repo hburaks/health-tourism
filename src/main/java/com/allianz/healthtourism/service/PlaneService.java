@@ -1,7 +1,6 @@
 package com.allianz.healthtourism.service;
 
-import com.allianz.healthtourism.database.entity.PatientEntity;
-import com.allianz.healthtourism.database.entity.PlaneEntity;
+import com.allianz.healthtourism.database.entity.*;
 import com.allianz.healthtourism.database.repository.PatientRepository;
 import com.allianz.healthtourism.database.repository.PlaneRepository;
 import com.allianz.healthtourism.database.specification.PatientSpecification;
@@ -15,6 +14,9 @@ import com.allianz.healthtourism.model.responseDTO.PlaneResponseDTO;
 import com.allianz.healthtourism.util.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -36,5 +38,19 @@ public class PlaneService extends BaseService<PlaneResponseDTO, PlaneRequestDTO,
     @Override
     protected PlaneSpecification getSpecification() {
         return specification;
+    }
+
+    @Override
+    public PlaneResponseDTO save(PlaneRequestDTO requestDTO) {
+        List<SeatEntity> seats = new ArrayList<>();
+        for(int i = 0; i < requestDTO.getSeatCount(); i++){
+            SeatEntity seat = new SeatEntity();
+            seat.setSeatNo(i+1);
+            seats.add(seat);
+        }
+        PlaneEntity planeEntity = getMapper().requestDtoToEntity(requestDTO);
+        planeEntity.setSeats(seats);
+        planeEntity = getRepository().save(planeEntity);
+        return getMapper().entityToResponseDto(planeEntity);
     }
 }

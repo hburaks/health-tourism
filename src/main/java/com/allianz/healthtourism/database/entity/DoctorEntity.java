@@ -19,10 +19,8 @@ public class DoctorEntity extends BaseEntity {
     private HealthCareServiceEntity healthCareService;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "doctor")
     private List<ExaminationRecordEntity> examinationRecords;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserEntity user;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "doctor")
     private List<AppointmentEntity> appointments;
-
-
 }

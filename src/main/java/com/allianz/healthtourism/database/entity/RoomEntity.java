@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 public class RoomEntity extends BaseEntity {
     private int roomNo;
-    private int bedCount;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<PatientEntity> patients;
 }

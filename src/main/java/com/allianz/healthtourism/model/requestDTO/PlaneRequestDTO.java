@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class PlaneRequestDTO extends BaseRequestDTO {
     private String name;
-    private List<SeatRequestDTO> seats;
-    private CityRequestDTO city;
+    private int seatCount;
+    private Long cityId;
 }

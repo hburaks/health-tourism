@@ -1,6 +1,5 @@
-package com.allianz.healthtourism.model.responseDTO;
+package com.allianz.healthtourism.model.responseDTO.plainResponseDTO;
 
-import com.allianz.healthtourism.model.responseDTO.plainResponseDTO.HospitalPlainResponseDTO;
 import com.allianz.healthtourism.util.BaseResponseDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ManyToMany;
@@ -10,8 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Data
-public class HealthCareServiceResponseDTO extends BaseResponseDTO {
+public class HealthCareServicePlainResponseDTO extends BaseResponseDTO {
     private String name;
     private BigDecimal price;
-    private List<HospitalPlainResponseDTO> hospitals;
 }

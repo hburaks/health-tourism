@@ -10,9 +10,7 @@ import java.util.List;
 @Table
 @Entity
 @Data
-public class PatientEntity extends BaseEntity {
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private UserEntity user;
+public class PatientEntity extends PersonEntity {
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<ExaminationRecordEntity> examinationRecords;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "patient")

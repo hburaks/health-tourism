@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class PlaneTicketRequestDTO extends BaseRequestDTO {
-    private FlightRequestDTO flight;
-    private SeatRequestDTO seat;
-    private PatientRequestDTO patient;
+    private Long flightId;
+    private Long seatId;
+    private Long patientId;
 }

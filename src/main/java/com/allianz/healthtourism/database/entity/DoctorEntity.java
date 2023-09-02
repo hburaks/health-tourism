@@ -10,7 +10,7 @@ import java.util.List;
 @Table
 @Entity
 @Data
-public class DoctorEntity extends BaseEntity {
+public class DoctorEntity extends PersonEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
@@ -19,8 +19,6 @@ public class DoctorEntity extends BaseEntity {
     private HealthCareServiceEntity healthCareService;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "doctor")
     private List<ExaminationRecordEntity> examinationRecords;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private UserEntity user;
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "doctor")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "doctor")
     private List<AppointmentEntity> appointments;
 }

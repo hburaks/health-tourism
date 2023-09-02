@@ -11,8 +11,7 @@ import java.util.List;
 @Data
 public class PlaneEntity extends BaseEntity {
     private String name;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SeatEntity> seats;
+    private int seatCount;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "plane")
     private CityEntity city;

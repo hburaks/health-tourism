@@ -19,6 +19,6 @@ public class HospitalEntity extends BaseEntity {
     private List<PatientEntity> patients;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "hospital")
     private List<DoctorEntity> doctors;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "hospitals", cascade = CascadeType.MERGE)
     private List<HealthCareServiceEntity> healthCareServices;
 }

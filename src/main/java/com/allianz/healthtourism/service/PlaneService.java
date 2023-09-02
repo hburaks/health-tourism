@@ -40,17 +40,9 @@ public class PlaneService extends BaseService<PlaneResponseDTO, PlaneRequestDTO,
         return specification;
     }
 
-    @Override
-    public PlaneResponseDTO save(PlaneRequestDTO requestDTO) {
-        List<SeatEntity> seats = new ArrayList<>();
-        for(int i = 0; i < requestDTO.getSeatCount(); i++){
-            SeatEntity seat = new SeatEntity();
-            seat.setSeatNo(i+1);
-            seats.add(seat);
-        }
-        PlaneEntity planeEntity = getMapper().requestDtoToEntity(requestDTO);
-        planeEntity.setSeats(seats);
-        planeEntity = getRepository().save(planeEntity);
-        return getMapper().entityToResponseDto(planeEntity);
+    public PlaneEntity findById(Long id){
+        return getRepository().findById(id).orElse(null);
     }
+
+
 }

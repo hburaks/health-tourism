@@ -18,8 +18,6 @@ public class HotelEntity extends BaseEntity {
     private CityEntity city;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<PatientEntity> patients;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<BookingEntity> bookings;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<RoomEntity> rooms;
 }

@@ -25,4 +25,6 @@ public class FlightEntity extends BaseEntity {
     private PlaneEntity plane;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PatientEntity> patients;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<SeatEntity> seats;
 }

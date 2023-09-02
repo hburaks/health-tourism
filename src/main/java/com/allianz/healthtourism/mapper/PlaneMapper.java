@@ -14,6 +14,5 @@ public interface PlaneMapper extends BaseMapper<PlaneEntity, PlaneResponseDTO, P
 
     @Override
     @Mapping(source = "cityId", target = "city.id")
-    @Mapping(source = "seatCount", target = "seats", ignore = true)
     PlaneEntity requestDtoToEntity(PlaneRequestDTO requestDTO);
 }

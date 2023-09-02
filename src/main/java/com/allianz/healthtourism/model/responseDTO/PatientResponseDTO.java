@@ -9,10 +9,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PatientResponseDTO extends BaseResponseDTO {
+public class PatientResponseDTO extends PersonResponseDTO {
     private UserResponseDTO user;
     private List<ExaminationRecordResponseDTO> examinationRecords;
-    private List<BookingResponseDTO> bookings;
+    private List<BookingForPatientResponseDTO> bookings;
     private List<AppointmentResponseDTO> appointments;
     private List<PlaneTicketResponseDTO> planeTickets;
 }

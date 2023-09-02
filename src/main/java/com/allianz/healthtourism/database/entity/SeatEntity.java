@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class SeatEntity extends BaseEntity {
     private int seatNo;
+    private boolean isAvailable;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")
     private PatientEntity patient;

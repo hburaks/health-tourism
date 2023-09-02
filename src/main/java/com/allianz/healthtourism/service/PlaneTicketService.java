@@ -1,7 +1,13 @@
 package com.allianz.healthtourism.service;
 
+import com.allianz.healthtourism.database.entity.FlightEntity;
+import com.allianz.healthtourism.database.entity.PatientEntity;
 import com.allianz.healthtourism.database.entity.PlaneTicketEntity;
+import com.allianz.healthtourism.database.entity.SeatEntity;
+import com.allianz.healthtourism.database.repository.FlightRepository;
+import com.allianz.healthtourism.database.repository.PatientRepository;
 import com.allianz.healthtourism.database.repository.PlaneTicketRepository;
+import com.allianz.healthtourism.database.repository.SeatRepository;
 import com.allianz.healthtourism.database.specification.PlaneTicketSpecification;
 import com.allianz.healthtourism.mapper.PlaneTicketMapper;
 import com.allianz.healthtourism.model.requestDTO.PlaneTicketRequestDTO;
@@ -10,12 +16,18 @@ import com.allianz.healthtourism.util.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
 public class PlaneTicketService extends BaseService<PlaneTicketResponseDTO, PlaneTicketRequestDTO, PlaneTicketEntity, PlaneTicketMapper, PlaneTicketRepository, PlaneTicketSpecification> {
     private final PlaneTicketRepository repository;
     private final PlaneTicketSpecification specification;
+    private final PatientRepository patientRepository;
+    private final SeatRepository seatRepository;
+    private final FlightRepository flightRepository;
 
     @Override
     protected PlaneTicketMapper getMapper() {
@@ -30,5 +42,25 @@ public class PlaneTicketService extends BaseService<PlaneTicketResponseDTO, Plan
     @Override
     protected PlaneTicketSpecification getSpecification() {
         return specification;
+    }
+
+    @Override
+    public PlaneTicketResponseDTO save(PlaneTicketRequestDTO requestDTO) {
+        PatientEntity patient = patientRepository.getReferenceById(requestDTO.getPatientId());
+        SeatEntity seat = seatRepository.getReferenceById(requestDTO.getSeatId());
+        if(seat.isAvailable()){
+            return null;
+        }
+        seat.setAvailable(false);
+        seatRepository.save(seat);
+        FlightEntity flightEntity = flightRepository.getReferenceById(requestDTO.getFlightId());
+        if(flightEntity.getPatients() == null){
+            flightEntity.setPatients(new ArrayList<>());
+        }
+        flightEntity.getPatients().add(patient);
+        flightRepository.save(flightEntity);
+        PlaneTicketEntity entity = getMapper().requestDtoToEntity(requestDTO);
+        getRepository().save(entity);
+        return getMapper().entityToResponseDto(entity);
     }
 }

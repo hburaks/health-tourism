@@ -6,4 +6,5 @@ import lombok.Data;
 @Data
 public class SeatPlainResponseDTO extends BaseResponseDTO {
     private int seatNo;
+    private boolean isAvailable;
 }

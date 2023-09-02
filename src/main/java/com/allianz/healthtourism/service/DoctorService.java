@@ -2,6 +2,7 @@ package com.allianz.healthtourism.service;
 
 import com.allianz.healthtourism.database.entity.CityEntity;
 import com.allianz.healthtourism.database.entity.DoctorEntity;
+import com.allianz.healthtourism.database.entity.HospitalEntity;
 import com.allianz.healthtourism.database.repository.CityRepository;
 import com.allianz.healthtourism.database.repository.DoctorRepository;
 import com.allianz.healthtourism.database.specification.CitySpecification;
@@ -11,6 +12,7 @@ import com.allianz.healthtourism.mapper.DoctorMapper;
 import com.allianz.healthtourism.model.requestDTO.CityRequestDTO;
 import com.allianz.healthtourism.model.requestDTO.DoctorRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.CityResponseDTO;
+import com.allianz.healthtourism.model.responseDTO.DoctorForPatientWithAppointmentResponseDTO;
 import com.allianz.healthtourism.model.responseDTO.DoctorResponseDTO;
 import com.allianz.healthtourism.util.BaseService;
 import com.allianz.healthtourism.util.security.*;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Service
@@ -50,5 +53,14 @@ public class DoctorService extends BaseService<DoctorResponseDTO, DoctorRequestD
         }
         DoctorEntity savedDoctor = getRepository().save(doctorEntity);
         return getMapper().entityToResponseDto(savedDoctor);
+    }
+
+    public DoctorForPatientWithAppointmentResponseDTO getByUuidForPatient(UUID uuid) {
+        DoctorEntity entity = getRepository().findByUuid(uuid).orElse(null);
+        if (entity != null) {
+            return getMapper().entityToPatientResponseDto(entity);
+        } else {
+            return null;
+        }
     }
 }

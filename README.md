@@ -18,16 +18,24 @@
 16. Get all planes
 17. Create Flight with city id's and plane id
 18. Get all flight
-
----
-- Create patient and while creating, create user with patient role and add to patient
-- Login for Patient
-- Patient lists and selects the doctor he wants and create appointment
-- Patient lists selects the hotel according to appointment and creates booking
-- Patient lists selects flight and the seat according to appointment and creates ticket
+19. Create patient and while creating, create user with patient role and add to patient
+20. Get all patients(Admin auth)
+21. Login for Patient
+22. Patient lists the health services and get uuid for hospital
+23. Patient lists doctors from hospital
+24. Patient lists the appointments from the doctor selected
+25. Creates appointment for the doctor with id's
+26. Get all appointments
+27. Get Patient with Appointments
+28. Patient lists the hotels according to appointment city with rooms booking dates.
+29. Patient creates booking for the available room on the date.
+30. Get Flight specified with the route
+31. Selects the seat and creates ticket
 
 --- 
 - Login as Admin
 - When the day comes flight moves to other city
 - Login as doctor
 - When the day comes doctor creates examination record from appointment
+
+- Handle authorization for roles

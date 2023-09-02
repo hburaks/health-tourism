@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class PlaneResponseDTO extends BaseResponseDTO {
     private String name;
-    private List<SeatResponseDTO> seats;
+    private int seatCount;
     private CityResponseDTO city;
 }

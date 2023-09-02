@@ -1,5 +1,6 @@
 package com.allianz.healthtourism.util.security;
 
+import com.allianz.healthtourism.model.responseDTO.PersonResponseDTO;
 import com.allianz.healthtourism.util.BaseResponseDTO;
 import lombok.Data;
 
@@ -15,7 +16,6 @@ public class UserResponseDTO extends BaseResponseDTO {
     private String password;
     private String photoLink;
     private boolean isEnable;
-    //    private ProfileEntity profile;
+        private PersonResponseDTO profile;
     private Set<RoleResponseDTO> roles = new HashSet<>();
-//    private AppResponseDTO app;
 }

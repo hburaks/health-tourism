@@ -23,7 +23,11 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO, Response
 
     @PostMapping
     public ResponseEntity<ResponseDTO> save(@RequestBody RequestDTO requestDTO) {
-        return new ResponseEntity<>(getService().save(requestDTO), HttpStatus.CREATED);
+        ResponseDTO responseDTO = getService().save(requestDTO);
+        if (responseDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("{uuid}")

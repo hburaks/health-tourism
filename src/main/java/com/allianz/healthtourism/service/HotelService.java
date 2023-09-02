@@ -8,11 +8,13 @@ import com.allianz.healthtourism.mapper.HospitalMapper;
 import com.allianz.healthtourism.mapper.HotelMapper;
 import com.allianz.healthtourism.model.requestDTO.HotelRequestDTO;
 import com.allianz.healthtourism.model.requestDTO.RoomRequestDTO;
+import com.allianz.healthtourism.model.responseDTO.HotelForPatientResponseDTO;
 import com.allianz.healthtourism.model.responseDTO.HotelResponseDTO;
 import com.allianz.healthtourism.util.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,5 +52,14 @@ public class HotelService extends BaseService<HotelResponseDTO, HotelRequestDTO,
         hotelEntity.setRooms(roomEntities);
         hotelEntity = getRepository().save(hotelEntity);
         return getMapper().entityToResponseDto(hotelEntity);
+    }
+
+    public List<HotelForPatientResponseDTO> findByCityName(String cityName){
+        List<HotelEntity> hotelEntities = getRepository().findByCityName(cityName);
+        return getMapper().entityListToResponseDtoListForPatient(hotelEntities);
+    }
+
+    public HotelEntity findById(Long hotelId) {
+        return getRepository().findById(hotelId).orElse(null);
     }
 }

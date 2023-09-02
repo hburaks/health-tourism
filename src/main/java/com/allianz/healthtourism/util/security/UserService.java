@@ -95,7 +95,25 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
                 roleEntity.setName("doctor");
                 roleEntity = roleRepository.save(roleEntity);
             }
-//            user.setProfile(new ProfileEntity());
+            roles.add(roleEntity);
+            user.setRoles(roles);
+            UserEntity userEntity = userRepository.save(user);
+            return userEntity;
+        }
+        return null;
+    }
+
+    public UserEntity saveUserByPatientRole(UserEntity user) {
+        if (!isEmailExist(user.getEmail())) {
+            user.setEnable(false);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            Set<RoleEntity> roles = new HashSet<>();
+            RoleEntity roleEntity = roleRepository.findByName("patient").orElse(null);
+            if (roleEntity == null) {
+                roleEntity = new RoleEntity();
+                roleEntity.setName("patient");
+                roleEntity = roleRepository.save(roleEntity);
+            }
             roles.add(roleEntity);
             user.setRoles(roles);
             UserEntity userEntity = userRepository.save(user);

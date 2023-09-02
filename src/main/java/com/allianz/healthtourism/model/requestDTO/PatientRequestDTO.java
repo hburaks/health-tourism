@@ -10,8 +10,4 @@ import java.util.List;
 @Data
 public class PatientRequestDTO extends BaseRequestDTO {
     private UserRequestDTO user;
-    private List<ExaminationRecordRequestDTO> examinationRecords;
-    private List<BookingRequestDTO> bookings;
-    private List<AppointmentRequestDTO> appointments;
-    private List<PlaneTicketRequestDTO> planeTickets;
 }

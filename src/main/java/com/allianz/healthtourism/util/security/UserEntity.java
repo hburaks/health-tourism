@@ -1,6 +1,7 @@
 package com.allianz.healthtourism.util.security;
 
 import com.allianz.healthtourism.database.entity.PatientEntity;
+import com.allianz.healthtourism.database.entity.PersonEntity;
 import com.allianz.healthtourism.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -37,6 +38,9 @@ public class UserEntity extends BaseEntity {
     @ToString.Exclude
     @JoinColumn(name = "role_id", nullable = false)
     private Set<RoleEntity> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private PersonEntity person;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "app_id")

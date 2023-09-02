@@ -35,4 +35,6 @@ public class BookingController extends BaseController<BookingRequestDTO,
     protected BookingService getService() {
         return service;
     }
+
+
 }

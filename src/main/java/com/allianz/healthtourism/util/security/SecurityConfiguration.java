@@ -32,9 +32,9 @@ public class SecurityConfiguration {
 
             "/workout-template/**", "/register/**",};
 
-    private static final String[] ADMIN_AUTH_WHITELIST = {"/**"
-
-    };
+    private static final String[] ADMIN_AUTH_WHITELIST = {"/**"};
+    private static final String[] DOCTOR_AUTH_WHITELIST = {"/**"};
+    private static final String[] PATIENT_AUTH_WHITELIST = {"/**"};
     private final JWTFilter filter;
     private final SecurityService uds;
 
@@ -48,8 +48,13 @@ public class SecurityConfiguration {
                     configuration.setAllowedHeaders(List.of("*"));
                     configuration.setExposedHeaders(List.of("Content-Disposition"));
                     return configuration;
-                }).and().authorizeHttpRequests().requestMatchers(AUTH_WHITELIST).permitAll().requestMatchers(USER_AUTH_WHITELIST).hasRole("user").requestMatchers(ADMIN_AUTH_WHITELIST).hasRole("admin").and()
-
+                }).and().authorizeHttpRequests()
+                .requestMatchers(AUTH_WHITELIST).permitAll()
+                .requestMatchers(USER_AUTH_WHITELIST).hasRole("user")
+                .requestMatchers(ADMIN_AUTH_WHITELIST).hasRole("admin")
+                .requestMatchers(DOCTOR_AUTH_WHITELIST).hasRole("doctor")
+                .requestMatchers(PATIENT_AUTH_WHITELIST).hasRole("patient")
+                .and()
                 .userDetailsService(uds).exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 

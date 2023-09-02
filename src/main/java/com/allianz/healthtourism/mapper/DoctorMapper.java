@@ -7,6 +7,7 @@ import com.allianz.healthtourism.model.requestDTO.CityRequestDTO;
 import com.allianz.healthtourism.model.requestDTO.DoctorRequestDTO;
 import com.allianz.healthtourism.model.requestDTO.HospitalRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.CityResponseDTO;
+import com.allianz.healthtourism.model.responseDTO.DoctorForPatientWithAppointmentResponseDTO;
 import com.allianz.healthtourism.model.responseDTO.DoctorResponseDTO;
 import com.allianz.healthtourism.util.BaseMapper;
 import org.mapstruct.Mapper;
@@ -21,4 +22,6 @@ public interface DoctorMapper extends BaseMapper<DoctorEntity, DoctorResponseDTO
     @Mapping(source = "hospitalId", target = "hospital.id")
     @Mapping(source = "healthCareServiceId", target = "healthCareService.id")
     DoctorEntity requestDtoToEntity(DoctorRequestDTO requestDTO);
+
+    DoctorForPatientWithAppointmentResponseDTO entityToPatientResponseDto(DoctorEntity entity);
 }

@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class ExaminationRecordRequestDTO extends BaseRequestDTO {
     private String notes;
-    private AppointmentRequestDTO appointment;
+    private Long appointmentId;
 }

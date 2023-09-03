@@ -19,4 +19,6 @@ public class PatientEntity extends PersonEntity {
     private List<AppointmentEntity> appointments;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "patient")
     private List<PlaneTicketEntity> planeTickets;
+
+
 }

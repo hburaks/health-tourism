@@ -24,17 +24,51 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-    private static final String[] AUTH_WHITELIST = {"/auth/**", "/swagger-ui/**", "v3/api-docs/**", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/v3/api-docs/**", "/api/public/**", "/api/public/authenticate", "/actuator/*", "/**",
-
-
+    private static final String[] AUTH_WHITELIST = {
+            "/auth/**",
+            "/swagger-ui/**",
+            "v3/api-docs/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/v3/api-docs/**",
+            "/api/public/**",
+            "/api/public/authenticate",
+            "/actuator/*",
+            "*/register/**",
+            "*/login/**",
+            "/examination-record"
     };
     private static final String[] USER_AUTH_WHITELIST = {
+            "hospital/*/forPatient",
+            "doctor/*/forPatient",
+            "appointment/save-with-id",
+            "patient/**",
+            "hotel/city/*",
+            "booking",
+            "flight/city/**",
+            "/plane-ticket",
+            "health-care-service/get-all-filter",
+    };
 
-            "/workout-template/**", "/register/**",};
-
-    private static final String[] ADMIN_AUTH_WHITELIST = {"/**"};
-    private static final String[] DOCTOR_AUTH_WHITELIST = {"/**"};
-    private static final String[] PATIENT_AUTH_WHITELIST = {"/**"};
+    private static final String[] ADMIN_AUTH_WHITELIST = {
+            "/**",
+            "health-care-service/**"
+    };
+    private static final String[] DOCTOR_AUTH_WHITELIST = {
+            "/examination-record"
+    };
+    private static final String[] PATIENT_AUTH_WHITELIST = {
+            "hospital/*/forPatient",
+            "doctor/*/forPatient",
+            "appointment/save-with-id",
+            "patient/*",
+            "hotel/city/*",
+            "booking",
+            "flight/city/**",
+            "/plane-ticket",
+            "health-care-service/get-all-filter"
+    };
     private final JWTFilter filter;
     private final SecurityService uds;
 

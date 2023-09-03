@@ -51,4 +51,5 @@ public class UserEntity extends BaseEntity {
         isEnable = false;
         roles.add(new RoleEntity("user"));
     }
+
 }

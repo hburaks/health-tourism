@@ -15,6 +15,7 @@ import com.allianz.healthtourism.model.requestDTO.PatientRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.DoctorResponseDTO;
 import com.allianz.healthtourism.model.responseDTO.HotelResponseDTO;
 import com.allianz.healthtourism.model.responseDTO.PatientResponseDTO;
+import com.allianz.healthtourism.model.responseDTO.plainResponseDTO.PatientPlainResponseDTO;
 import com.allianz.healthtourism.util.BaseService;
 import com.allianz.healthtourism.util.security.UserEntity;
 import com.allianz.healthtourism.util.security.UserService;
@@ -53,5 +54,9 @@ public class PatientService extends BaseService<PatientResponseDTO, PatientReque
         }
         PatientEntity savedPatient = getRepository().save(patientEntity);
         return getMapper().entityToResponseDto(savedPatient);
+    }
+
+    public PatientEntity findById(Long id){
+        return getRepository().findById(id).orElse(null);
     }
 }

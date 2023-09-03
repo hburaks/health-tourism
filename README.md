@@ -31,11 +31,7 @@
 29. Patient creates booking for the available room on the date.
 30. Get Flight specified with the route
 31. Selects the seat and creates ticket
+32. Login as doctor
+33. When the day comes doctor creates examination record from appointment
 
---- 
-- Login as Admin
-- When the day comes flight moves to other city
-- Login as doctor
-- When the day comes doctor creates examination record from appointment
-
-- Handle authorization for roles
+## You can reach these endpoints from "Health Tourism.postman_collection.json" file.

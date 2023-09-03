@@ -51,6 +51,7 @@ public class DoctorController extends BaseController<DoctorRequestDTO,
         }
     }
 
+
     @GetMapping("{uuid}/forPatient")
     public ResponseEntity<DoctorForPatientWithAppointmentResponseDTO> getByUuidForPatient(@PathVariable UUID uuid) {
         try {

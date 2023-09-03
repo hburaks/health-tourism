@@ -16,6 +16,10 @@ import com.allianz.healthtourism.service.DoctorService;
 import com.allianz.healthtourism.service.ExaminationRecordService;
 import com.allianz.healthtourism.util.BaseController;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,4 +39,13 @@ public class ExaminationRecordController extends BaseController<ExaminationRecor
     protected ExaminationRecordService getService() {
         return service;
     }
+
+    @Override
+    @PostMapping
+    public ResponseEntity<ExaminationRecordResponseDTO> save(@RequestBody ExaminationRecordRequestDTO requestDTO) {
+        ExaminationRecordResponseDTO responseDTO = getService().saveWithId(requestDTO);
+        if (responseDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);    }
 }

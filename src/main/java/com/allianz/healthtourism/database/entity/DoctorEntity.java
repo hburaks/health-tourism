@@ -17,8 +17,8 @@ public class DoctorEntity extends PersonEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "health_care_service_id")
     private HealthCareServiceEntity healthCareService;
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "doctor")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<ExaminationRecordEntity> examinationRecords;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "doctor")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "doctor")
     private List<AppointmentEntity> appointments;
 }
